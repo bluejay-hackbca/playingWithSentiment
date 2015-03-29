@@ -30,6 +30,8 @@ while len(results) < length:
    status = session.getProcessedDocuments()
    results.extend(status)
 
+print(results)
+
 for data in results:
    # print document sentiment score
    print("Document ", data["id"], " Sentiment score: ", data["sentiment_score"], "\r\n")
