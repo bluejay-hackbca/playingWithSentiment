@@ -13,9 +13,6 @@ initialTexts = [
     "On this day in 1786 - In New York City  commercial ice cream was manufactured for the first time."
 ]
 
-f = open('converttotext.txt', 'w')
-
-
 for text in initialTexts:
    doc = {"id": str(uuid.uuid4()).replace("-", ""), "text": text}
 
@@ -36,23 +33,18 @@ while len(results) < length:
 for data in results:
    # print document sentiment score
    print("Document ", data["id"], " Sentiment score: ", data["sentiment_score"], "\r\n")
-f.write(str(data["sentiment_score"])
-
+   results3 = {"Document: ", str(data["id"])}
 
    # print document themes
    if "themes" in data:
       print("Document themes:", "\r\n")
       for theme in data["themes"]:
          print("     ", theme["title"], " (sentiment: ", theme["sentiment_score"], ")", "\r\n")
-f.write(str(theme["title"])
-
+         results2 = {str(theme["title"])}
 
    # print document entities
    if "entities" in data:
       print("Entities:", "\r\n")
       for entity in data["entities"]:
          print("\t", entity["title"], " : ", entity["entity_type"]," (sentiment: ", entity["sentiment_score"], ")", "\r\n")         
-f.write(str(entity["title"])
-f.write(str(entity["entity_type"]))
-
-f.close()
+         results = {str(entity['title'] + " : "), str(entity["entity_type"])}
